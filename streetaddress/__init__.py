@@ -44,10 +44,11 @@ def parse_address(addr):
     if match:
         match_data = match.groups()
         return normalize_address({'po_box_number':match_data[2],
-                'city':match_data[3],
-                'state':match_data[4],
-                'zip':match_data[5],
-                'zip_ext':match_data[6]})
+                'po_box_station':match_data[3],
+                'city':match_data[4],
+                'state':match_data[5],
+                'zip':match_data[6],
+                'zip_ext':match_data[7]})
 
 def normalize_address(addr):
     addr['state'] = normalize_state(addr.get('state', None))
@@ -63,6 +64,8 @@ def normalize_address(addr):
     addr['suffix2'] = normalize_directional(addr.get('suffix2', None))
 
     addr['unit_prefix'] = _upper_if_exists(addr.get('unit_prefix', None))
+
+    addr['po_box_station'] = normalize_pobox_station(addr.get('po_box_station', None))
 
     addr = dict((k,v) for k,v in addr.items() if v)
 
@@ -95,6 +98,11 @@ def normalize_street_type(s_type):
         return Streets.STREET_TYPES[s_type.lower()].title()
     elif s_type.lower() in Streets.STREET_TYPES_LIST:
         return s_type.title()
+
+def normalize_pobox_station(station):
+    if not station:
+         return None
+    return station + ' Station'
 
 def normalize_directional(direction):
     if not direction :
