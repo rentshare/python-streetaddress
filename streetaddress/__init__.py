@@ -26,20 +26,28 @@ def parse_intersection(inter):
 
 def parse_address(addr):
     match = Regexes.address.match(addr)
-    if not match:
-        return
-    match_data = match.groups()
-    return normalize_address({'number':match_data[0],
-            'street':match_data[4] or match_data[9] or match_data[1],
-            'type':match_data[5] or match_data[2],
-            'sec_unit_num':match_data[13],
-            'sec_unit_type':match_data[12],
-            'suffix':match_data[6] or match_data[11],
-            'prefix':match_data[3],
-            'city':match_data[14],
-            'state':match_data[15],
-            'zip':match_data[16],
-            'zip_ext':match_data[17]})
+    if match:
+        match_data = match.groups()
+        return normalize_address({'number':match_data[0],
+                'street':match_data[4] or match_data[9] or match_data[1],
+                'type':match_data[5] or match_data[2],
+                'sec_unit_num':match_data[13],
+                'sec_unit_type':match_data[12],
+                'suffix':match_data[6] or match_data[11],
+                'prefix':match_data[3],
+                'city':match_data[14],
+                'state':match_data[15],
+                'zip':match_data[16],
+                'zip_ext':match_data[17]})
+
+    match = Regexes.box_address.match(addr)
+    if match:
+        match_data = match.groups()
+        return normalize_address({'po_box_number':match_data[2],
+                'city':match_data[3],
+                'state':match_data[4],
+                'zip':match_data[5],
+                'zip_ext':match_data[6]})
 
 def normalize_address(addr):
     addr['state'] = normalize_state(addr.get('state', None))
@@ -58,7 +66,7 @@ def normalize_address(addr):
 
     addr = dict((k,v) for k,v in addr.items() if v)
 
-    return addr 
+    return addr
 
 def normalize_city(city) :
     if not city :
@@ -70,7 +78,7 @@ def normalize_city(city) :
         else :
             city_list.append(word)
     return ' '.join(city_list)
-            
+
 
 def normalize_state(state):
     if not state :
@@ -87,7 +95,7 @@ def normalize_street_type(s_type):
         return Streets.STREET_TYPES[s_type.lower()].title()
     elif s_type.lower() in Streets.STREET_TYPES_LIST:
         return s_type.title()
-      
+
 def normalize_directional(direction):
     if not direction :
         return None
@@ -101,5 +109,5 @@ def _upper_if_exists(field) :
         return None
     else :
         return field.upper()
-    
+
 

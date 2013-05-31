@@ -47,6 +47,12 @@ class addressTests(unittest.TestCase) :
 
 
 
+    assert sa.parse("PO Box 1529, New York, NY, 19087") == {
+              'city': 'New York',
+              'state': 'NY',
+              'po_box_number': '1529',
+              'zip': '19087'
+            }
 
 
     assert sa.parse("1005 N Gravenstein Highway, Suite 500, Sebastopol, CA") == {

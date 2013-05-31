@@ -376,9 +376,9 @@ class Streets(object):
 		"wells":"wls",
 		"wy":"way"
 		}
-	
+
 	STREET_TYPES_LIST = set(STREET_TYPES.keys() + STREET_TYPES.values())
-	
+
 class States(object):
 	STATE_CODES = {
 		"alabama":"AL",
@@ -441,7 +441,7 @@ class States(object):
 		"wisconsin":"WI",
 		"wyoming":"WY"
 		}
-	
+
 	STATE_NAMES = dict((v,k) for k,v in STATE_CODES.iteritems())
 
 	STATE_FIPS = {
@@ -505,6 +505,7 @@ class States(object):
 class Regexes(object):
 	street_type = re.compile('|'.join(Streets.STREET_TYPES_LIST), re.IGNORECASE)
 	number = re.compile(r'\d+-?\d*')
+	box = re.compile(r'box[^a-z]|(p[-. ]?o.?[- ]?|post office )b(.|ox)\s*(\d+-?\d*)', re.IGNORECASE)
 	fraction = re.compile(r'\d+\/\d+')
 	state = re.compile('|'.join([v.replace(' ','\\s') for v in (States.STATE_CODES.values() + States.STATE_CODES.keys())]), re.IGNORECASE)
 	direct = re.compile('|'.join(Directions.DIRECTIONAL.keys()) + '|' + '|'.join([(''.join([n+'\\.' for n in v])+'|'+v) for v in sorted(Directions.DIRECTIONAL.values(), key=len, reverse=True)]), re.IGNORECASE)
@@ -515,4 +516,5 @@ class Regexes(object):
 	place = re.compile(r'(?:([^\d,]+?)\W+(${0})\W*)?(?:{1})?'.format(state.pattern,zip_code.pattern), re.IGNORECASE)
 	address = re.compile(r'\A\W*({0})\W*(?:{1}\W*)?{2}\W+(?:{3}\W+)?{4}\W*\Z'.format(number.pattern,fraction.pattern,street.pattern,unit.pattern,place.pattern), re.IGNORECASE)
 	intersection = re.compile('\A\W*{0}\W*?\s+{1}\s+{0}\W+{2}\W*\Z'.format(street.pattern,corner.pattern,place.pattern), re.IGNORECASE)
+	box_address = re.compile('\A\W*{0}\W*?\s+{2}\W*\Z'.format(box.pattern,corner.pattern,place.pattern), re.IGNORECASE)
 
