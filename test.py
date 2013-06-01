@@ -100,6 +100,16 @@ class addressTests(unittest.TestCase) :
               'zip': '19087'
             }
 
+    assert sa.parse('902 Broadway #3W, New York, NY 10010') == {
+            'city':
+            'New York',
+            'zip': '10010',
+            'number': '902',
+            'sec_unit_num': '3W',
+            'state': 'NY',
+            'street': 'Broadway'
+            }
+
 
     assert sa.parse("28A Maria Way Southbridge, MA 01550") == {
         'city': 'Southbridge',
