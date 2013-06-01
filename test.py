@@ -54,6 +54,60 @@ class addressTests(unittest.TestCase) :
               'zip': '19087'
             }
 
+    assert sa.parse("PO Box 1529-103, New York, NY, 19087") == {
+              'city': 'New York',
+              'state': 'NY',
+              'po_box_number': '1529-103',
+              'zip': '19087'
+            }
+
+    assert sa.parse("PO box 040-313 Parkville Station, Brooklyn, NY, 19087") == {
+              'city': 'Brooklyn',
+              'state': 'NY',
+              'po_box_number': '040-313',
+              'po_box_station': 'Parkville Station',
+              'zip': '19087'
+            }
+
+    assert sa.parse("PO box 040-313 Parkville Sta, Brooklyn, NY, 19087") == {
+              'city': 'Brooklyn',
+              'state': 'NY',
+              'po_box_number': '040-313',
+              'po_box_station': 'Parkville Station',
+              'zip': '19087'
+            }
+
+    assert sa.parse("PO Box 1529 Wall Steet Station, New York, NY, 19087") == {
+              'city': 'New York',
+              'state': 'NY',
+              'po_box_number': '1529',
+              'po_box_station': 'Wall Steet Station',
+              'zip': '19087'
+            }
+
+    assert sa.parse("PO Box 1529, Wall Steet Station, New York, NY, 19087") == {
+              'city': 'New York',
+              'state': 'NY',
+              'po_box_number': '1529',
+              'po_box_station': 'Wall Steet Station',
+              'zip': '19087'
+            }
+
+    assert sa.parse("PO Box #1529, New York, NY, 19087") == {
+              'city': 'New York',
+              'state': 'NY',
+              'po_box_number': '1529',
+              'zip': '19087'
+            }
+
+
+    assert sa.parse("28A Maria Way Southbridge, MA 01550") == {
+        'city': 'Southbridge',
+        'zip': '01550',
+        'number': '28A',
+        'state': 'MA',
+        'street': 'Maria',
+        'type': 'Way'}
 
     assert sa.parse("1005 N Gravenstein Highway, Suite 500, Sebastopol, CA") == {
               'number' : '1005',
