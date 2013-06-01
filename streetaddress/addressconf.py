@@ -504,7 +504,7 @@ class States(object):
 
 class Regexes(object):
 	street_type = re.compile('|'.join(Streets.STREET_TYPES_LIST), re.IGNORECASE)
-	number = re.compile(r'\d+-?\d*')
+	number = re.compile(r'\d+-?\w*')
 	box = re.compile(r'(?:box[^a-z]|(p[-. ]?o.?[- ]?|post office )b(.|ox)\W*?\s+(?:\#\W*)?(\d+-?\d*)\W*?\s?(?:([\w\s]+)\s+Sta(?:tion)?)?)', re.IGNORECASE)
 	fraction = re.compile(r'\d+\/\d+')
 	state = re.compile('|'.join([v.replace(' ','\\s') for v in (States.STATE_CODES.values() + States.STATE_CODES.keys())]), re.IGNORECASE)

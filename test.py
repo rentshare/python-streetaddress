@@ -101,6 +101,14 @@ class addressTests(unittest.TestCase) :
             }
 
 
+    assert sa.parse("28A Maria Way Southbridge, MA 01550") == {
+        'city': 'Southbridge',
+        'zip': '01550',
+        'number': '28A',
+        'state': 'MA',
+        'street': 'Maria',
+        'type': 'Way'}
+
     assert sa.parse("1005 N Gravenstein Highway, Suite 500, Sebastopol, CA") == {
               'number' : '1005',
               'street' : 'Gravenstein',
