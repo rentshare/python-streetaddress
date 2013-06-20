@@ -107,6 +107,7 @@ def normalize_pobox_station(station):
 def normalize_directional(direction):
     if not direction :
         return None
+    direction = direction.lower().replace('.','')
     if len(direction) < 3:
         return direction.upper()
     else:
