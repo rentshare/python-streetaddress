@@ -7,6 +7,7 @@ setup(name='streetaddress',
       url='https://github.com/jjensenmike/python-streetaddress',
       keywords='streetaddress',
       packages=['streetaddress'],
+      install_requires=['datadiff'],
       classifiers=[
           'Development Status :: 5 - Production/Stable',
           'Environment :: Other Environment',

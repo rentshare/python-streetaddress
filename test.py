@@ -1,14 +1,17 @@
 import streetaddress as sa
 import unittest
+from datadiff import diff
 
 class AddressTests(unittest.TestCase):
 
     @classmethod
     def generate_tests( cls ):
-        def create_test( addr, addr_parsed ):
+        def create_test( addr, addr_parsed_validator ):
             def test( self ):
-                self.assertEqual( sa.parse( addr ), addr_parsed )
-                #assert sa.parse( addr ) == addr_parsed
+                #self.assertEqual( sa.parse( addr ), addr_parsed )
+                addr_parsed = sa.parse( addr )
+                assert addr_parsed, 'Could not parse address "{}"'.format(addr)
+                assert addr_parsed == addr_parsed_validator, ( addr + "\n" + str( diff( addr_parsed, addr_parsed_validator ) ) )
             return test
 
         for i, addr_test_args in enumerate( cls._test_addresses ):
@@ -461,6 +464,14 @@ class AddressTests(unittest.TestCase):
                 'type' : '',  # ?
                 'state' : 'CO'
                 }),
+        ("212 Avenue B, New York, NY 10009", {
+                'city' : 'New York',
+                'zip' : '10009',
+                'number' : '212',
+                'street' : 'Avenue B',
+                'state' : 'NY'
+        }),
+
         ("355 1/2 S Gilbert St, Iowa City, IA 52240", {
             'city': 'Iowa City',
             'zip': '52240',
