@@ -312,7 +312,7 @@ class AddressTests(unittest.TestCase):
                   'prefix' : 'SE'
                 }),
         ("3813 1/2 Some Road, Los Angeles, CA", {
-                  'number' : '3813',
+                  'number' : '3813 1/2',
                   'street' : 'Some',
                   'state' : 'CA',
                   'city' : 'Los Angeles',
@@ -461,7 +461,15 @@ class AddressTests(unittest.TestCase):
                 'type' : '',  # ?
                 'state' : 'CO'
                 }),
-
+        ("355 1/2 S Gilbert St, Iowa City, IA 52240", {
+            'city': 'Iowa City',
+            'zip': '52240',
+            'state': 'IA',
+            'number': '355 1/2',
+            'prefix': 'S',
+            'street': 'Gilbert',
+            'type': 'St'
+        }),
      ]
 
 AddressTests.generate_tests()
