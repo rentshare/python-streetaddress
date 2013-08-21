@@ -481,6 +481,14 @@ class AddressTests(unittest.TestCase):
             'street': 'Gilbert',
             'type': 'St'
         }),
+        ("PO Box 564, AR Dept: GF, Laurel, NY 11948", {
+            'city': 'Laurel',
+            'state': 'NY',
+            'sec_unit_num': 'GF',
+            'sec_unit_type': 'AR Dept',
+            'po_box_number': '564',
+            'zip': '11948'
+            }),
      ]
 
 AddressTests.generate_tests()
