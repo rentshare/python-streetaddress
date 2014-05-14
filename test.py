@@ -69,6 +69,70 @@ class AddressTests(unittest.TestCase):
             'sec_unit_num' : '500',
             }),
 
+        ("1005 N Gravenstein Highway, FL 500, Sebastopol, CA", {
+            'number' : '1005',
+            'street' : 'Gravenstein',
+            'state' : 'CA',
+            'city' : 'Sebastopol',
+            'type' : 'Hwy',
+            'prefix' : 'N',
+            'sec_unit_type' : 'FL',
+            'sec_unit_num' : '500',
+            }),
+
+        ("1005 N Gravenstein Highway, 500 FL, Sebastopol, CA", {
+            'number' : '1005',
+            'street' : 'Gravenstein',
+            'state' : 'CA',
+            'city' : 'Sebastopol',
+            'type' : 'Hwy',
+            'prefix' : 'N',
+            'sec_unit_type' : 'FL',
+            'sec_unit_num' : '500',
+            }),
+
+        ("1005 N Gravenstein Highway, 27 FL, Sebastopol, CA", {
+            'number' : '1005',
+            'street' : 'Gravenstein',
+            'state' : 'CA',
+            'city' : 'Sebastopol',
+            'type' : 'Hwy',
+            'prefix' : 'N',
+            'sec_unit_type' : 'FL',
+            'sec_unit_num' : '27',
+            }),
+
+        ("1005 N Gravenstein Highway, 27th FL, Sebastopol, CA", {
+            'number' : '1005',
+            'street' : 'Gravenstein',
+            'state' : 'CA',
+            'city' : 'Sebastopol',
+            'type' : 'Hwy',
+            'prefix' : 'N',
+            'sec_unit_type' : 'FL',
+            'sec_unit_num' : '27th',
+            }),
+
+        ("1005 N Gravenstein Highway, 27th Floor, Sebastopol, CA", {
+            'number' : '1005',
+            'street' : 'Gravenstein',
+            'state' : 'CA',
+            'city' : 'Sebastopol',
+            'type' : 'Hwy',
+            'prefix' : 'N',
+            'sec_unit_type' : 'Floor',
+            'sec_unit_num' : '27th',
+            }),
+
+        ("1005 N Gravenstein Highway, 1/2, Sebastopol, CA", {
+            'number' : '1005',
+            'street' : 'Gravenstein',
+            'state' : 'CA',
+            'city' : 'Sebastopol',
+            'type' : 'Hwy',
+            'prefix' : 'N',
+            'sec_unit_num' : '1/2',
+            }),
 
 
         ("PO Box 1529, New York, NY, 19087", {
@@ -282,8 +346,6 @@ class AddressTests(unittest.TestCase):
                     'zip' : '84111',
                     'city' : 'Salt Lake City',
                     'suffix' : 'E',
-                    'type' : '',
-                    'sec_unit_type' : '#',
                     'prefix' : 'S'
             }),
         ("6641 N 2200 W Apt D304 Park City, UT 84098", {
@@ -314,7 +376,7 @@ class AddressTests(unittest.TestCase):
                   'prefix' : 'SE'
                 }),
         ("3813 1/2 Some Road, Los Angeles, CA", {
-                  'number' : '3813',
+                  'number' : '3813 1/2',
                   'street' : 'Some',
                   'state' : 'CA',
                   'city' : 'Los Angeles',
@@ -392,7 +454,6 @@ class AddressTests(unittest.TestCase):
                   'type' : 'St',
                 }),
         ("123 Maple Rochester, New York", { # space in state name
-                  'type' : '',
                   'number' : '123',
                   'street' : 'Maple',
                   'state' : 'NY',
@@ -469,7 +530,28 @@ class AddressTests(unittest.TestCase):
                 'number' : '212',
                 'street' : 'Avenue B',
                 'state' : 'NY'
-        })
+        }),
+        ("27 ober street, Beverly, 01915", {
+                'city' : 'Beverly',
+                'zip' : '01915',
+                'number' : '27',
+                'street' : 'ober',
+                'type' : 'St',
+        }),
+		("27 ober street, Beverly, Massachusetts 01915", {
+                'city' : 'Beverly',
+                'zip' : '01915',
+                'number' : '27',
+                'street' : 'ober',
+                'state' : 'MA',
+                'type' : 'St',
+        }),
+		 ("27 ober street, 01915", {
+                'zip' : '01915',
+                'number' : '27',
+                'street' : 'ober',
+                'type' : 'St',
+        }),
      ]
 
 AddressTests.generate_tests()

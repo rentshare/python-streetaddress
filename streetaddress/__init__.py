@@ -28,17 +28,17 @@ def parse_address(addr):
     match = Regexes.address.match(addr)
     if match:
         match_data = match.groups()
-        return normalize_address({'number':match_data[0],
-                'street':match_data[4] or match_data[9] or match_data[1],
-                'type':match_data[5] or match_data[2],
-                'sec_unit_num':match_data[13],
-                'sec_unit_type':match_data[12],
-                'suffix':match_data[6] or match_data[11],
-                'prefix':match_data[3],
-                'city':match_data[14],
-                'state':match_data[15],
-                'zip':match_data[16],
-                'zip_ext':match_data[17]})
+        return normalize_address({'number':match_data[0] + (' ' + match_data[1] if match_data[1] else ''),
+                'street':match_data[5] or match_data[10] or match_data[2],
+                'type':match_data[6] or match_data[3],
+                'sec_unit_num':match_data[14] or match_data[15] or match_data[17],
+                'sec_unit_type':match_data[13] or match_data[16],
+                'suffix':match_data[7] or match_data[12],
+                'prefix':match_data[4],
+                'city':match_data[18],
+                'state':match_data[19],
+                'zip':match_data[20],
+                'zip_ext':match_data[21] })
 
     match = Regexes.box_address.match(addr)
     if match:
