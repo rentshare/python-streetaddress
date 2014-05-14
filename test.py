@@ -10,6 +10,7 @@ class AddressTests(unittest.TestCase):
             def test( self ):
                 #self.assertEqual( sa.parse( addr ), addr_parsed )
                 addr_parsed = sa.parse( addr )
+                assert addr_parsed, 'Could not parse address "{}"'.format(addr)
                 assert addr_parsed == addr_parsed_validator, ( addr + "\n" + str( diff( addr_parsed, addr_parsed_validator ) ) )
             return test
 
@@ -531,6 +532,16 @@ class AddressTests(unittest.TestCase):
                 'street' : 'Avenue B',
                 'state' : 'NY'
         }),
+
+        ("355 1/2 S Gilbert St, Iowa City, IA 52240", {
+            'city': 'Iowa City',
+            'zip': '52240',
+            'state': 'IA',
+            'number': '355 1/2',
+            'prefix': 'S',
+            'street': 'Gilbert',
+            'type': 'St'
+		}),
         ("27 ober street, Beverly, 01915", {
                 'city' : 'Beverly',
                 'zip' : '01915',
@@ -538,7 +549,7 @@ class AddressTests(unittest.TestCase):
                 'street' : 'ober',
                 'type' : 'St',
         }),
-		("27 ober street, Beverly, Massachusetts 01915", {
+        ("27 ober street, Beverly, Massachusetts 01915", {
                 'city' : 'Beverly',
                 'zip' : '01915',
                 'number' : '27',
@@ -546,12 +557,20 @@ class AddressTests(unittest.TestCase):
                 'state' : 'MA',
                 'type' : 'St',
         }),
-		 ("27 ober street, 01915", {
+        ("27 ober street, 01915", {
                 'zip' : '01915',
                 'number' : '27',
                 'street' : 'ober',
                 'type' : 'St',
         }),
+        ("PO Box 564, AR Dept: GF, Laurel, NY 11948", {
+            'city': 'Laurel',
+            'state': 'NY',
+            'sec_unit_num': 'GF',
+            'sec_unit_type': 'AR Dept',
+            'po_box_number': '564',
+            'zip': '11948'
+            }),
      ]
 
 AddressTests.generate_tests()

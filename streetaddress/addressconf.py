@@ -518,5 +518,5 @@ class Regexes(object):
 	place = re.compile(r'(?:([^\d,]+?)\W+(${0})\W*)?(?:{1})?'.format(state.pattern,zip_code.pattern), re.IGNORECASE)
 	address = re.compile(r'\A\W*({0})\W*(?:({1})\W*)?{2}\W+(?:{3}\W+)?{4}\W*\Z'.format(number.pattern,fraction.pattern,street.pattern,unit.pattern,place.pattern), re.IGNORECASE)
 	intersection = re.compile('\A\W*{0}\W*?\s+{1}\s+{0}\W+{2}\W*\Z'.format(street.pattern,corner.pattern,place.pattern), re.IGNORECASE)
-	box_address = re.compile('\A\W*{0}\W*?\s+{1}\W*\Z'.format(box.pattern,place.pattern), re.IGNORECASE)
+	box_address = re.compile('\A\W*{0}\W+(?:{1}\W+)?{2}\W*\Z'.format(box.pattern,unit.pattern,place.pattern), re.IGNORECASE)
 
