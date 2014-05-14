@@ -464,6 +464,7 @@ class AddressTests(unittest.TestCase):
                   'number' : '233',
                   'street' : 'Wacker',
                   'zip' : '60606',
+                  'zip_ext' : '6306',
                   'type' : 'Dr',
                   'prefix' : 'S'
                 }),

@@ -47,10 +47,10 @@ def parse_address(addr):
                 'po_box_station':match_data[3],
                 'sec_unit_type':match_data[4],
                 'sec_unit_num':match_data[5],
-                'city':match_data[6],
-                'state':match_data[7],
-                'zip':match_data[8],
-                'zip_ext':match_data[9]})
+                'city':match_data[9],
+                'state':match_data[10],
+                'zip':match_data[11],
+                'zip_ext':match_data[12]})
 
 def normalize_address(addr):
     addr['state'] = normalize_state(addr.get('state', None))

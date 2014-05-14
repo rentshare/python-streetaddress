@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(name='streetaddress',
-      version='0.1.5',
+      version='0.1.6',
       description='A Python port of the Perl address parser.',
       author='Mike Jensen, Ian Halpern',
       url='https://github.com/jjensenmike/python-streetaddress',
