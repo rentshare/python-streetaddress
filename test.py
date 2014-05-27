@@ -19,6 +19,15 @@ class AddressTests(unittest.TestCase):
 
     _test_addresses = [
 
+        ('22 W 12th Street, NY 10011', {
+			'number': '22',
+			'prefix': 'W',
+			'street': '12th',
+			'type': 'St',
+			'state': 'NY',
+			'zip': '10011'
+		}),
+
         ('1005 Gravenstein Hwy 95472', {
             'number' :'1005',
             'street' : 'Gravenstein',
@@ -571,6 +580,15 @@ class AddressTests(unittest.TestCase):
             'sec_unit_type': 'AR Dept',
             'po_box_number': '564',
             'zip': '11948'
+            }),
+
+		('11890 Ashbrook Ave, Jacksonville, FL 32225', {
+            'city': 'Jacksonville',
+            'state': 'FL',
+            'number': '11890',
+            'street': 'Ashbrook',
+            'type': 'Ave',
+            'zip': '32225'
             }),
      ]
 
