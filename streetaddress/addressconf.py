@@ -391,6 +391,8 @@ class States(object):
 		"connecticut":"CT",
 		"delaware":"DE",
 		"district of columbia":"DC",
+		"d.c.":"DC",
+		"d.c":"DC",
 		"federated states of micronesia":"FM",
 		"florida":"FL",
 		"georgia":"GA",

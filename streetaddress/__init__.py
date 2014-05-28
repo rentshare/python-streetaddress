@@ -91,7 +91,7 @@ def normalize_state(state):
     if len(state) < 3:
         return state.upper()
     else:
-        return States.STATE_CODES[state.lower()]
+        return States.STATE_CODES[state.lower().strip()]
 
 def normalize_street_type(s_type):
     if not s_type :

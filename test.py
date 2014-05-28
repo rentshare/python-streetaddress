@@ -590,6 +590,37 @@ class AddressTests(unittest.TestCase):
             'type': 'Ave',
             'zip': '32225'
             }),
+
+		('1849 Vernon St nw, Washington, D.C. 20009',{
+			'city': 'Washington',
+			'suffix': 'NW',
+			'zip': '20009',
+			'number': '1849',
+			'state': 'DC',
+			'street': 'Vernon',
+			'type': 'St'
+		}),
+
+		('1849 Vernon St nw, Washington, D.C 20009',{
+			'city': 'Washington',
+			'suffix': 'NW',
+			'zip': '20009',
+			'number': '1849',
+			'state': 'DC',
+			'street': 'Vernon',
+			'type': 'St'
+		}),
+
+		('1849 Vernon St, NW, Washington, D.C. 20009',{
+			'city': 'Washington',
+			'suffix': 'NW',
+			'zip': '20009',
+			'number': '1849',
+			'state': 'DC',
+			'street': 'Vernon',
+			'type': 'St'
+		}),
+
      ]
 
 AddressTests.generate_tests()
