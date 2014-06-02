@@ -123,6 +123,17 @@ class AddressTests(unittest.TestCase):
             'sec_unit_num' : '27th',
             }),
 
+        ("950 Third Ave, 27th FL, New York, NY 10022", {
+            'number' : '950',
+            'street' : 'Third',
+            'state' : 'NY',
+            'city' : 'New York',
+            'type' : 'Ave',
+			'zip': '10022',
+            'sec_unit_type' : 'FL',
+            'sec_unit_num' : '27th',
+            }),
+
         ("1005 N Gravenstein Highway, 27th Floor, Sebastopol, CA", {
             'number' : '1005',
             'street' : 'Gravenstein',
